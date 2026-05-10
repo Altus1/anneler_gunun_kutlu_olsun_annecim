@@ -68,12 +68,23 @@ body {
     position: relative;
     width: 280px;
     height: 180px;
-    background: var(--envelope-color);
+    background: #fecdd3; /* Inside color of the envelope */
     box-shadow: 0 20px 40px rgba(0,0,0,0.1);
     border-radius: 4px;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.envelope-front {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+    z-index: 3;
+    /* Create a pocket look using clip-path */
+    clip-path: polygon(0 0, 140px 100px, 280px 0, 280px 180px, 0 180px);
+    border-radius: 4px;
 }
 
 .flap {
@@ -87,22 +98,22 @@ body {
     border-top: 100px solid #fecdd3;
     transform-origin: top;
     transition: transform 0.6s ease;
-    z-index: 5; /* Flap should be on top of everything when closed */
+    z-index: 5; /* Flap is on top when closed */
 }
 
 .envelope-wrapper.open .flap {
     transform: rotateX(180deg);
-    z-index: 1; /* Move behind the letter when opened */
+    z-index: 1; /* Move behind when opened */
 }
 
 .letter {
     position: absolute;
-    bottom: 10px; /* Start inside the envelope */
+    bottom: 0; /* Positioned inside the pocket */
     width: 250px;
     height: 150px;
     background: white;
     border-radius: 4px;
-    z-index: 2;
+    z-index: 2; /* Letter is inside the pocket (behind the front panel) */
     transition: transform 0.6s ease, bottom 0.6s ease;
     display: flex;
     justify-content: center;
@@ -113,8 +124,8 @@ body {
 }
 
 .envelope-wrapper.open .letter {
-    transform: translateY(-100px);
-    z-index: 4; /* Pop above the envelope body but behind the opened flap if needed, actually 4 is safe */
+    transform: translateY(-110px);
+    z-index: 4; /* Letter pops out and goes in front of the pocket */
 }
 
 .letter p {
