@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anneler Günü Kutlu Olsun</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- Reveal Section -->
+        <div id="reveal-container" class="active">
+            <div class="envelope-wrapper" id="envelope-btn">
+                <div class="envelope">
+                    <div class="flap"></div>
+                    <div class="letter">
+                        <p>Canım Anneme...</p>
+                    </div>
+                </div>
+                <div class="envelope-text">Tıkla...</div>
+            </div>
+        </div>
+
+        <!-- Video Section -->
+        <div id="video-container" class="hidden">
+            <video id="mom-video" playsinline>
+                <source src="mom_gift.mp4" type="video/mp4">
+                Tarayıcınız video etiketini desteklemiyor.
+            </video>
+            <div id="video-overlay">
+                <h1>Seni Çok Seviyorum Anneciğim!</h1>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

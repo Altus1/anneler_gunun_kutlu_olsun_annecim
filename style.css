@@ -1,0 +1,208 @@
+:root {
+    --primary-color: #9f1239; /* Deep Rose */
+    --secondary-color: #fb7185; /* Rose 400 */
+    --bg-gradient: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%);
+    --envelope-color: #ffffff;
+    --text-color: #4c0519;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--bg-gradient);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    color: var(--text-color);
+}
+
+#app {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Reveal Container */
+#reveal-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1), transform 1s ease;
+    z-index: 10;
+}
+
+#reveal-container.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(1.1);
+}
+
+/* Envelope Styling */
+.envelope-wrapper {
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.envelope-wrapper:hover {
+    transform: translateY(-10px);
+}
+
+.envelope {
+    position: relative;
+    width: 280px;
+    height: 180px;
+    background: var(--envelope-color);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 140px solid transparent;
+    border-right: 140px solid transparent;
+    border-top: 100px solid #fecdd3;
+    transform-origin: top;
+    transition: transform 0.6s ease;
+    z-index: 3;
+}
+
+.envelope-wrapper.open .flap {
+    transform: rotateX(180deg);
+    z-index: 1;
+}
+
+.letter {
+    position: absolute;
+    width: 250px;
+    height: 150px;
+    background: white;
+    border-radius: 4px;
+    z-index: 2;
+    transition: transform 0.6s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.envelope-wrapper.open .letter {
+    transform: translateY(-80px);
+}
+
+.letter p {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.envelope-text {
+    margin-top: 40px;
+    font-size: 18px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--primary-color);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
+    100% { opacity: 0.5; transform: scale(1); }
+}
+
+/* Video Container */
+#video-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 1.5s ease;
+    z-index: 5;
+}
+
+#video-container.active {
+    opacity: 1;
+}
+
+#mom-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#video-overlay {
+    position: absolute;
+    bottom: 40px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    color: white;
+    text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    z-index: 6;
+    padding: 0 20px;
+}
+
+#video-overlay h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(24px, 5vw, 48px);
+    font-weight: 700;
+}
+
+/* Utilities */
+.hidden {
+    display: none !important;
+}
+
+/* Mobile Responsive */
+@media (max-width: 480px) {
+    .envelope {
+        width: 220px;
+        height: 140px;
+    }
+    .flap {
+        border-left-width: 110px;
+        border-right-width: 110px;
+        border-top-width: 80px;
+    }
+    .letter {
+        width: 200px;
+        height: 120px;
+    }
+    .letter p {
+        font-size: 18px;
+    }
+}
